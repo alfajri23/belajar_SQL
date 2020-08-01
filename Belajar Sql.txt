@@ -1,0 +1,40 @@
+1. create database myshop;
+   use myshop;
+2. create table users(
+    -> id int NOT NULL AUTO_INCREMENT primary key,
+    -> name varchar(255),
+    -> email varchar(255),
+    -> password varchar(255));
+
+   create table categories(
+    -> id int NOT NULL AUTO_INCREMENT primary key,
+    -> name varchar(255));
+
+   create table items(
+    -> id int NOT NULL AUTO_INCREMENT primary key,
+    -> name varchar(255),
+    -> description varchar(255),
+    -> price int,
+    -> stock int,
+    -> category_id int,
+    -> CONSTRAINT fkcategory_id FOREIGN KEY (category_id) REFERENCES categories (id));
+
+3. Insert into users (name,email,password) values ('John Doe','john@doe.com','john123');
+   Insert into users (name,email,password) values ('Jane Doe','jane@doe.com','jenita123');
+
+   Insert into categories (name) values ('gadget');
+   Insert into categories (name) values ('cloth');
+   Insert into categories (name) values ('men');
+   Insert into categories (name) values ('women');
+   Insert into categories (name) values ('branded');
+
+   Insert into items (name,description,price,stock,category_id) values ('Sumsang b50','hape keren dari sumsang',4000000,100,1);
+    Insert into items (name,description,price,stock,category_id) values ('Uniklooh','baju keren dari brand ternama',500000,50,2);
+   Insert into items (name,description,price,stock,category_id) values ('IMHO Watch','jam tangan anak yang jujur banget',2000000,10,1);
+
+4. a. Select name,email from users;
+   b. select * from items where price>1000000;
+      select * from items where name like '%sang%';
+   c. select i.name, i.description, i.price, i.stock, i.category_id, c.name from items i inner join categories c on i.category_id = c.id;
+
+5. update items set price=2500000 where id=1;
